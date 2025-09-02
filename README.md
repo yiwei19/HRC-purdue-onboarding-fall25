@@ -3,7 +3,7 @@
 
 This document walks you through the onboarding task for HRC Software such that by the end of this onboarding project, you will have created a (semi) walking quadruped simulated on your computer.\
 \
-For this onboarding project, you will make a mujoco xml specification of a robot dog, simulate it in a python simulation loop, and write a PD controller and walking program for it in simulation.
+For this onboarding project, you will make a mujoco xml specification of a robot dog, simulate it in a python simulation loop, and write a PD controller and walking program for it in simulation.\
 \
 The goal of this onboarding is for you to get some familiarity with the world of programming legged robots such as thinking about robots and their control physically (kinematics) and the usage of simulation. During this project, you are encouraged to read a bit more about legged locomotion and robotics.
 
@@ -35,4 +35,5 @@ With your venv activated, install mujoco and numpy with
 pip install mujoco
 pip install numpy
 ```
-
+# Mujoco Snake Example
+To help you get started 
