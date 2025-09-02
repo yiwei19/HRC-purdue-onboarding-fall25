@@ -53,3 +53,19 @@ To see a gui with a snake flopping around on the floor.
 This repo contains two files, snake.xml and visualize_snake.py. snake.xml contains the specification of the snake robot in the simulation. The details of how the specification works can be found online. visualize_snake.py generates a model and data variable from the xml, and runs a single timestep through mj_step(model, data) before visualizing with viewer2. model represents the physical properties of the world and data represents the state of the world at a certain timestep. At each timestep, joint torques in the form of a numpy array is loaded into data.ctrl.\
 \
 The state of the simulation (including all the joint positions) is printed out to the screen as a 11 dimension vector in data.qpos. The first 3 elements represent the xyz position of the robot, the next 4 are a quaternion representing the orientation of the robot and the last 4 elements represents the joint position of each joint. The velocity information is stored in data.qvel.
+
+# Onboarding Task
+Create a public repo on your personal github to submit all your work. You will be submitting a github link to your public repo containing all the code for your dog.
+## Robot Dog Dimensions
+![dog](dog_dims.jpg)
+Create a mujoco xml that creates a robot similar to the one displayed here. Implement each joint with <motor> actuator with a maximum torque of 20 Nm. **Do not use mujoco's prebuilt position actuators**.
+## Robot Dog Simulation Loop
+Write a simulation loop similar to visualize_snake.py that loads the robot dog into a simulation gui.
+## Robot Dog Controller
+Controlling joint torques is unintuitive for the programmer. One way to move from the complicated task of controlling through torque to something like controlling through position is through a joint controller. Implement a PD controller in your control loop using qpos and qvel. Control torque is determined by:\
+$$\tau = K_p (X_{des} - X) + K_d (\dot{X}_{des} - \dot{X})$$\
+$$\tau:$$ Joint Torques; $$K_p \approx 10, K_d \approx 1.0$$: PD gains, feel free to adjust; $$X$$: Joint positions (real and desired); $$\dot{X}$$: Joint velocities (real and desired)
+## Robot Dog Walking
+Finally using your working PD controller, think about the steps needed to do the motions for walking and implement them in your control loop as a function of time. It does not need to be perfect (and most certainly wont because of the open loop nature) and just needs to demonstrate forward locomotion.
+# Submission
+DM the software lead **Ludwig Tay** on discord once you are done for review of submission.
