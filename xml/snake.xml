@@ -1,0 +1,54 @@
+<mujoco model="snake">
+  <compiler angle="degree"/>
+  <option timestep="0.001" gravity="0 0 -9.81"/>
+
+  <default>
+    <equality solref="0.005 1" />
+    <geom type="box" size="0.05 0.02 0.02" density="500" rgba="0.2 0.7 0.2 1"/>
+    <joint limited="true" range="-300 300" damping="0.2" stiffness="5"/>
+    <motor ctrllimited="true" ctrlrange="-3 3"/>
+  </default>
+
+  <worldbody>
+    <!-- Segment 0 (root) -->
+    <body name="seg0" pos="0 0 0.15">
+      <freejoint name="root_free"/>
+      <geom name="seg0_geom" type="box" size="0.10 0.02 0.02" pos="0.10 0 0"/>
+
+      <!-- Segment 1 -->
+      <body name="seg1" pos="0.20 0 0">
+        <joint name="j1_yaw" type="hinge" axis="0 0 1" pos="0.0 0 0"/>
+        <geom name="seg1_geom" type="box" size="0.10 0.02 0.02" pos="0.10 0 0"/>
+        <!-- Segment 2 -->
+        <body name="seg2" pos="0.20 0 0">
+          <joint name="j2_pitch" type="hinge" axis="0 1 0" pos="0.0 0 0"/>
+          <geom name="seg2_geom" type="box" size="0.10 0.02 0.02" pos="0.10 0 0"/>
+          <!-- Segment 3 -->
+          <body name="seg3" pos="0.20 0 0">
+            <joint name="j3_yaw" type="hinge" axis="0 0 1" pos="0.0 0 0"/>
+            <geom name="seg3_geom" type="box" size="0.10 0.02 0.02" pos="0.10 0 0"/>
+            <!-- Segment 4 -->
+            <body name="seg4" pos="0.20 0 0">
+              <joint name="j4_pitch" type="hinge" axis="0 1 0" pos="0.0 0 0"/>
+              <geom name="seg4_geom" type="box" size="0.10 0.02 0.02" pos="0.10 0 0"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="m1_yaw" joint="j1_yaw"/>
+    <motor name="m2_pitch" joint="j2_pitch"/>
+    <motor name="m3_yaw" joint="j3_yaw"/>
+    <motor name="m4_pitch" joint="j4_pitch"/>
+  </actuator>
+
+  <sensor>
+    <jointpos joint="j1_yaw"/>
+    <jointpos joint="j2_pitch"/>
+    <jointpos joint="j3_yaw"/>
+    <jointpos joint="j4_pitch"/>
+  </sensor>
+</mujoco>
