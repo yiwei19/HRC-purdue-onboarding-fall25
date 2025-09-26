@@ -1,0 +1,111 @@
+<mujoco model="dog">
+    <compiler angle="radian"/>
+    <option gravity="0 0 -9.81"/>
+
+    <default>
+        <geom density="500" rgba="0.2 0.7 0.2 1"/>
+        <joint limited="true" range="-0.5 0.5" damping="0.2"/>
+        <motor ctrllimited="true" ctrlrange="-20 20"/>
+    </default>
+
+    <worldbody>
+        <!-- Torso: 0.20m x 0.03m x 0.03m (≈ 40cm x 6cm x 6cm) -->
+        <body name="torso" pos="0 0 0.25">
+            <geom name="torso_geom" type="box" size="0.20 0.03 0.03"/>
+
+            <!-- ================== Front Left Leg ================== -->
+            <body name="front_left_hip_block" pos="0.20 0.05 0">
+                <geom type="box" size="0.05 0.02 0.02"/>
+
+                <!-- Hip joint -->
+                <joint name="front_left_hip" type="hinge" axis="1 0 0"/>
+                <body name="front_left_upper_leg" pos="0 0.03 -0.06">
+                    <geom type="box" size="0.01 0.01 0.05"/>
+
+                    <!-- Knee joint -->
+                    <joint name="front_left_knee" type="hinge" axis="0 1 0"/>
+                    <body name="front_left_lower_leg" pos="0 -0.02 -0.1">
+                        <geom type="box" size="0.01 0.01 0.05"/>
+
+                        <!-- Ankle joint -->
+                        <joint name="front_left_ankle" type="hinge" axis="0 1 0"/>
+                        <geom type="sphere" size="0.02" pos="0 0 -0.05"/>
+                    </body>
+                </body>
+            </body>
+
+            <!-- ================== Front Right Leg ================== -->
+            <body name="front_right_hip_block" pos="0.20 -0.05 0">
+                <geom type="box" size="0.05 0.02 0.02"/>
+
+                <joint name="front_right_hip" type="hinge" axis="1 0 0"/>
+                <body name="front_right_upper_leg" pos="0 -0.03 -0.05">
+                    <geom type="box" size="0.01 0.01 0.05"/>
+
+                    <joint name="front_right_knee" type="hinge" axis="0 1 0"/>
+                    <body name="front_right_lower_leg" pos="0 0.02 -0.1">
+                        <geom type="box" size="0.01 0.01 0.05"/>
+
+                        <joint name="front_right_ankle" type="hinge" axis="0 1 0"/>
+                        <geom type="sphere" size="0.02" pos="0 0 -0.05"/>
+                    </body>
+                </body>
+            </body>
+
+            <!-- ================== Back Left Leg ================== -->
+            <body name="back_left_hip_block" pos="-0.20 0.05 0">
+                <geom type="box" size="0.05 0.02 0.02"/>
+
+                <joint name="back_left_hip" type="hinge" axis="1 0 0"/>
+                <body name="back_left_upper_leg" pos="0 0.03 -0.05">
+                    <geom type="box" size="0.01 0.01 0.05"/>
+
+                    <joint name="back_left_knee" type="hinge" axis="0 1 0"/>
+                    <body name="back_left_lower_leg" pos="0 -0.02 -0.1">
+                        <geom type="box" size="0.01 0.01 0.05"/>
+
+                        <joint name="back_left_ankle" type="hinge" axis="0 1 0"/>
+                        <geom type="sphere" size="0.02" pos="0 0 -0.05"/>
+                    </body>
+                </body>
+            </body>
+
+            <!-- ================== Back Right Leg ================== -->
+            <body name="back_right_hip_block" pos="-0.20 -0.05 0">
+                <geom type="box" size="0.05 0.02 0.02"/>
+
+                <joint name="back_right_hip" type="hinge" axis="1 0 0"/>
+                <body name="back_right_upper_leg" pos="0 -0.03 -0.05">
+                    <geom type="box" size="0.01 0.01 0.05"/>
+
+                    <joint name="back_right_knee" type="hinge" axis="0 1 0"/>
+                    <body name="back_right_lower_leg" pos="0 0.02 -0.1">
+                        <geom type="box" size="0.01 0.01 0.05"/>
+
+                        <joint name="back_right_ankle" type="hinge" axis="0 1 0"/>
+                        <geom type="sphere" size="0.02" pos="0 0 -0.05"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <!-- Actuators: 12 motors -->
+    <actuator>
+        <motor joint="front_left_hip"/>
+        <motor joint="front_left_knee"/>
+        <motor joint="front_left_ankle"/>
+
+        <motor joint="front_right_hip"/>
+        <motor joint="front_right_knee"/>
+        <motor joint="front_right_ankle"/>
+
+        <motor joint="back_left_hip"/>
+        <motor joint="back_left_knee"/>
+        <motor joint="back_left_ankle"/>
+
+        <motor joint="back_right_hip"/>
+        <motor joint="back_right_knee"/>
+        <motor joint="back_right_ankle"/>
+    </actuator>
+</mujoco>
